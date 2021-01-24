@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>/test/play.html</title>
+</head>
+<body>
+<h1>노는 페이지 입니다.</h1>
+<p>신나게 놀아 보아요</p>
+<a href="../home.do">인덱스로 가기 (상대 경로)</a><br />
+<a href="/spring03/home.do">인덱스로 가기 (절대 경로)</a><br />
+<!-- 최상위 경로 -->
+<a href="/spring03/">인덱스로 가기 (welcomefile-list)</a><br />
+</body>
+</html>
+<!-- 
+	context 경로는 html 페이지에서는 사용할 수 없다.
+	${pageContext.request.contextPath }/
+	${pageContext.request.contextPath }/home.do
+	둘 다 동작을 하지 않음.
+ -->
