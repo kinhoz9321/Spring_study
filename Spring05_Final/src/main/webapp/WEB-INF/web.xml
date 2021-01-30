@@ -27,14 +27,9 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<!-- 따로 추가한 목록 -->
-	<welcome-file-list>
-		<welcome-file>home.do</welcome-file>
-	</welcome-file-list>
-	
+
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -47,5 +42,6 @@
 	<filter-mapping>
 		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>	
+	</filter-mapping>
+
 </web-app>
