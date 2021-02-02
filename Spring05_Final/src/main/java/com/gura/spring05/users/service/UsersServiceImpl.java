@@ -1,5 +1,6 @@
 package com.gura.spring05.users.service;
 
+import java.io.File;
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring05.users.dao.UsersDao;
@@ -136,5 +138,58 @@ public class UsersServiceImpl implements UsersService{
 		session.removeAttribute("id");
 		
 	}
+	
+	//비밀번호 수정 처리를 하고 성공 여부를 ModelAndView 객체에 담는 메소드
+	@Override
+	public void updateUserPwd(ModelAndView mView, UsersDto dto, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		boolean isSuccess=dao.updatePwd(dto);
+		if(isSuccess) {
+			session.removeAttribute("id");
+		}
+		mView.addObject("isSuccess", isSuccess);
+		
+	}
+	
+	//프로필 이미지를 upload 폴더에 저장하고 저장된 파일명을 DB에 저장하는 메소드
+	@Override
+	public void saveProfileImage(MultipartFile image, HttpServletRequest request) {
+		String orgFileName=image.getOriginalFilename();
+		
+		String realPath=request.getServletContext().getRealPath("/upload");
+		File f=new File(realPath);
+		if(!f.exists()) {
+			f.mkdir();
+		}
+		
+		String saveFileName=System.currentTimeMillis()+orgFileName;
+		
+		String path=realPath+File.separator+saveFileName;
+		try {
+			File f2=new File(path);
+			image.transferTo(f2);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		String profile="/upload/"+saveFileName;
+		
+		String id=(String)request.getSession().getAttribute("id");
+		UsersDto dto=new UsersDto();
+		dto.setId(id);
+		dto.setProfile(profile);
+		dao.updateProfile(dto);
+	}
+	
+	//개인정보를 수정하는 메소드(여기에서는 이메일 주소만 수정 가능)
+	@Override
+	public void updateUser(UsersDto dto, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		dao.update(dto);
+		
+	}
+
 
 }

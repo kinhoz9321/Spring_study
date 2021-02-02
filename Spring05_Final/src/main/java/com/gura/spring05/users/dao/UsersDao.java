@@ -13,4 +13,10 @@ public interface UsersDao {
 	public UsersDto getData(String id);
 	//회원가입 정보 삭제
 	public void delete(String id);
+	//비밀번호 수정하고 성공여부 리턴
+	public boolean updatePwd(UsersDto dto);
+	//프로필 이미지 경로 수정
+	public void updateProfile(UsersDto dto);
+	//회원가입 정보 수정 반영
+	public void update(UsersDto dto);
 }

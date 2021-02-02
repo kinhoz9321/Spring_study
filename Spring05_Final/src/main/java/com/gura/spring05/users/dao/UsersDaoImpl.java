@@ -50,5 +50,27 @@ public class UsersDaoImpl implements UsersDao{
 		session.delete("users.delete", id);
 		
 	}
+	//비밀번호 수정하고 성공여부 리턴
+	@Override
+	public boolean updatePwd(UsersDto dto) {
+		int count=session.update("users.updatePwd", dto);
+		if(count==0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	//프로필 이미지 경로 수정
+	@Override
+	public void updateProfile(UsersDto dto) {
+		
+		
+	}
+	//회원가입 정보 수정 반영
+	@Override
+	public void update(UsersDto dto) {
+		session.update("users.update", dto);
+		
+	}
 	
 }
