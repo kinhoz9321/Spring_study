@@ -16,7 +16,7 @@ public interface CafeService {
 	//글을 수정하는 메소드
 	public void updateContent(CafeDto dto);
 	//글을 삭제하는 메소드
-	
+	public void deleteContent(int num);
 	//댓글을 저장하는 메소드
 	
 	//댓글을 삭제하는 메소드

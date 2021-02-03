@@ -54,5 +54,12 @@ public class CafeDaoImpl implements CafeDao{
 		session.update("cafe.update", dto);
 		
 	}
+	
+	//글 삭제
+	@Override
+	public void delete(int num) {
+		session.delete("cafe.delete", num);
+		
+	}
 
 }

@@ -66,4 +66,11 @@ public class CafeController {
 		service.updateContent(dto);
 		return "cafe/private/update";
 	}
+	
+	//글 삭제 요청 처리
+	@RequestMapping("/cafe/private/delete")
+	public String delete(@RequestParam int num) {
+		service.deleteContent(num);
+		return "cafe/private/delete";
+	}
 }

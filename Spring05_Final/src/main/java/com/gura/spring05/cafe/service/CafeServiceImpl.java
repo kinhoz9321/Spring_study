@@ -135,5 +135,12 @@ public class CafeServiceImpl implements CafeService{
 		cafeDao.update(dto);
 		
 	}
+	
+	//글을 삭제하는 메소드
+	@Override
+	public void deleteContent(int num) {
+		cafeDao.delete(num);
+		
+	}
 
 }

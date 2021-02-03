@@ -18,5 +18,5 @@ public interface CafeDao {
 	//글 수정
 	public void update(CafeDto dto);
 	//글 삭제
-	
+	public void delete(int num);
 }
