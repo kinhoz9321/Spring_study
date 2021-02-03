@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gura.spring05.cafe.dto.CafeDto;
+import com.gura.spring05.exception.DBFailException;
 
 @Repository
 public class CafeDaoImpl implements CafeDao{
@@ -58,7 +59,10 @@ public class CafeDaoImpl implements CafeDao{
 	//글 삭제
 	@Override
 	public void delete(int num) {
-		session.delete("cafe.delete", num);
+		int count=session.delete("cafe.delete", num);
+		if(count==0) {
+			throw new DBFailException(num+" 번 글을 삭제할 수가 없습니다.");
+		}
 		
 	}
 
