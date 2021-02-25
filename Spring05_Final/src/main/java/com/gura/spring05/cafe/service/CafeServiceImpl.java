@@ -143,4 +143,16 @@ public class CafeServiceImpl implements CafeService{
 		
 	}
 
+	//댓글을 저장하는 메소드
+	@Override
+	public void saveComment(HttpServletRequest request) {
+		//댓글 작성자
+		String writer=(String)request.getSession().getAttribute("id");
+		//폼 전송되는 댓글의 정보 얻어내기
+		int ref_group=Integer.parseInt(request.getParameter("ref_group"));
+		String target_id=request.getParameter("target_id");
+		String content=request.getParameter("content");
+		
+	}
+
 }
